@@ -6,21 +6,21 @@ https://www.linkedin.com/developers/apps
 
 Após a criação deve solicitar permissões as apis, vou colocar abaixo quais utilizo, lembrando, são várias, algumas liberadas para empresas etc, mediante comprovação de necessidade e outras apenas para governo. Abaixo as que eu tenho acesso - levou cerca de 2 a 3 dias para eles responderem.
 
-![alt text](image-0.png)
+![alt text](assets/image-0.png)
 
 Com tudo liberado, será necessário gerar as chaves.
 
-![alt text](image-1.png)
+![alt text](assets/image-1.png)
 
 Lembre-se de gerar o token do usuário.
 
-![alt text](image-2.png)
+![alt text](assets/image-2.png)
 
 -----
 
 **Ao clonar é simples, basta instalar os pacotes: npm install**
 
-**O arquivo temas.json deve ser preenchido conforme seu prompt de uso, com suas regras e assuntos desejados. Ele sempre vai gerar conforme a data 'vencida'. basta rodar 'node index.js' para executar**
+**O arquivo data/temas.json deve ser preenchido conforme seu prompt de uso, com suas regras e assuntos desejados. Ele sempre vai gerar conforme a data 'vencida'. basta rodar 'node index.js' para executar**
 
 **Uma dica importante - para fins de testes e usar manualmente sem que seja um app publicado para que todos tenham acesso não é necessário solicitar liberação - eu mesmo antes de pedir acessos usei em modo test.**
 

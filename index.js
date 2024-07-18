@@ -15,28 +15,28 @@ app.use(express.json());
 
 // Function to read JSON file and get expired topics
 function getExpiredTopics() {
-    const topics = JSON.parse(fs.readFileSync('temas.json', 'utf-8'));
+    const topics = JSON.parse(fs.readFileSync('data/temas.json', 'utf-8'));
     const now = moment().tz('America/Sao_Paulo');
     return topics.filter(topic => moment(topic.data, 'DD/MM/YYYY HH:mm').tz('America/Sao_Paulo').isBefore(now) && !topic.gerado);
 }
 
 // Function to update JSON file and mark topic as generated
 function markTopicAsGenerated(topic) {
-    const topics = JSON.parse(fs.readFileSync('temas.json', 'utf-8'));
+    const topics = JSON.parse(fs.readFileSync('data/temas.json', 'utf-8'));
     const updatedTopics = topics.map(t => {
         if (t.data === topic.data) {
             return { ...t, gerado: true };
         }
         return t;
     });
-    fs.writeFileSync('temas.json', JSON.stringify(updatedTopics, null, 2), 'utf-8');
+    fs.writeFileSync('data/temas.json', JSON.stringify(updatedTopics, null, 2), 'utf-8');
 }
 
 // Function to add new topic to JSON file
 function addNewTopic(newTopic) {
-    const topics = JSON.parse(fs.readFileSync('temas.json', 'utf-8'));
+    const topics = JSON.parse(fs.readFileSync('data/temas.json', 'utf-8'));
     topics.push(newTopic);
-    fs.writeFileSync('temas.json', JSON.stringify(topics, null, 2), 'utf-8');
+    fs.writeFileSync('data/temas.json', JSON.stringify(topics, null, 2), 'utf-8');
 }
 
 // Function to remove unwanted phrases from generated text
