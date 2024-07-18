@@ -28,17 +28,16 @@ Lembre-se de gerar o token do usuário.
 
 **Se você rodar em um servidor, ele vai ser executado a cada 1 hora para novas postagens.**
 
-*E por último após tudo isto, criar .env com as chaves obtidas.*
+-----
+
+**E por último após tudo isto, criar .env com as chaves obtidas.**
 
 > .env
 
-// Os dados abaixo se referem ao app gerado no linkedin
+```
 CLIENT_ID=???
 CLIENT_SECRET=???
 LINKEDIN_USER_ID=???
-
-// Após gerar o token final do usuário deve ser colocado aqui
 ACCESS_TOKEN=???
-
-// Aqui é básico, precisa ter chave do GTP
-CHAVE_GPT=??
+CHAVE_GPT=???
+```
