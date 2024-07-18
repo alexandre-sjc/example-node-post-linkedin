@@ -20,7 +20,7 @@ Lembre-se de gerar o token do usuário.
 
 **Ao clonar é simples, basta instalar os pacotes: npm install**
 
-**O arquivo data/temas.json deve ser preenchido conforme seu prompt de uso, com suas regras e assuntos desejados. Ele sempre vai gerar conforme a data 'vencida'. basta rodar 'node index.js' para executar**
+**O arquivo data/temas.json deve ser preenchido conforme seu prompt de uso, com suas regras e assuntos desejados. Ele sempre vai gerar conforme a data 'vencida'. basta rodar 'node index.js' para executar.**
 
 **Uma dica importante - para fins de testes e usar manualmente sem que seja um app publicado para que todos tenham acesso não é necessário solicitar liberação - eu mesmo antes de pedir acessos usei em modo test.**
 
@@ -41,3 +41,5 @@ LINKEDIN_USER_ID=???
 ACCESS_TOKEN=???
 CHAVE_GPT=???
 ```
+
+**🚀 Linkedin posts.**
