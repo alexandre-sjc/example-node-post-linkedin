@@ -24,7 +24,7 @@ Lembre-se de gerar o token do usuário.
 
 **Uma dica importante - para fins de testes e usar manualmente sem que seja um app publicado para que todos tenham acesso não é necessário solicitar liberação - eu mesmo antes de pedir acessos usei em modo test.**
 
-**Neste exemplo, pode ter acesso ao endpoint /add para criar novos posts - basta passar o json com data e hora (dd/mm/yyyy hh:mm), assunto e prompt.**
+**Neste exemplo, pode ter acesso ao endpoint /add para criar novos posts - basta passar o json com data e hora (dd/mm/yyyy hh:mm), assunto, prompt e imagem. Lembrando que prompt é a instrução para gerar o texto e imagem a instrução para gerar a foto/imagem.**
 
 **Se você rodar em um servidor, ele vai ser executado a cada 1 hora para novas postagens.**
 

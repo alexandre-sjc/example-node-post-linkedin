@@ -15,28 +15,28 @@ app.use(express.json());
 
 // Function to read JSON file and get expired topics
 function getExpiredTopics() {
-    const topics = JSON.parse(fs.readFileSync('data/temas.json', 'utf-8'));
+    const topics = JSON.parse(fs.readFileSync('temas.json', 'utf-8'));
     const now = moment().tz('America/Sao_Paulo');
     return topics.filter(topic => moment(topic.data, 'DD/MM/YYYY HH:mm').tz('America/Sao_Paulo').isBefore(now) && !topic.gerado);
 }
 
 // Function to update JSON file and mark topic as generated
 function markTopicAsGenerated(topic) {
-    const topics = JSON.parse(fs.readFileSync('data/temas.json', 'utf-8'));
+    const topics = JSON.parse(fs.readFileSync('temas.json', 'utf-8'));
     const updatedTopics = topics.map(t => {
         if (t.data === topic.data) {
             return { ...t, gerado: true };
         }
         return t;
     });
-    fs.writeFileSync('data/temas.json', JSON.stringify(updatedTopics, null, 2), 'utf-8');
+    fs.writeFileSync('temas.json', JSON.stringify(updatedTopics, null, 2), 'utf-8');
 }
 
 // Function to add new topic to JSON file
 function addNewTopic(newTopic) {
-    const topics = JSON.parse(fs.readFileSync('data/temas.json', 'utf-8'));
+    const topics = JSON.parse(fs.readFileSync('temas.json', 'utf-8'));
     topics.push(newTopic);
-    fs.writeFileSync('data/temas.json', JSON.stringify(topics, null, 2), 'utf-8');
+    fs.writeFileSync('temas.json', JSON.stringify(topics, null, 2), 'utf-8');
 }
 
 // Function to remove unwanted phrases from generated text
@@ -57,10 +57,10 @@ async function getLinkedinId() {
 }
 
 // Function to generate content and image using OpenAI API
-async function generateContentAndImage(prompt) {
+async function generateContentAndImage(topic) {
     const completionResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
         model: 'gpt-4',
-        messages: [{ role: 'user', content: prompt }],
+        messages: [{ role: 'user', content: topic.prompt }],
     }, {
         headers: {
             'Authorization': `Bearer ${apiKey}`,
@@ -72,16 +72,16 @@ async function generateContentAndImage(prompt) {
     text = cleanGeneratedText(text);
 
     const imageResponse = await axios.post('https://api.openai.com/v1/images/generations', {
-        prompt: text.slice(0, 1000), // Ensure prompt length is within the limit
+        prompt: topic.imagem, 
         n: 1,
-        size: '1024x1024',
+        size: '1024x1024'
     }, {
         headers: {
             'Authorization': `Bearer ${apiKey}`,
             'Content-Type': 'application/json',
         },
     });
-
+    
     const imageUrl = imageResponse.data.data[0].url;
     const timestamp = moment().tz('America/Sao_Paulo').format('YYYY-MM-DD_HH-mm-ss');
     const directory = path.join('outputs', `output_${timestamp}`);
@@ -201,7 +201,7 @@ async function main() {
 
         for (const topic of expiredTopics) {
             console.log(`Processing topic with date and time: ${topic.data}`);
-            const { text, imagePath } = await generateContentAndImage(topic.prompt);
+            const { text, imagePath } = await generateContentAndImage(topic);
             const { uploadUrl, asset } = await registerImageUpload(ownerId);
             await uploadImage(uploadUrl, imagePath);
             const postId = await createPost(ownerId, asset, topic.assunto, text);
@@ -218,14 +218,15 @@ async function main() {
 // Add new topic endpoint
 app.post('/add', (req, res) => {
     const { data, assunto, prompt } = req.body;
-    if (!data || !assunto || !prompt) {
-        return res.status(400).send('Missing required fields: data, assunto, prompt');
+    if (!data || !assunto || !prompt || !imagem) {
+        return res.status(400).send('Missing required fields: data, assunto, prompt and image');
     }
 
     const newTopic = {
         data,
         assunto,
         prompt,
+        imagem,
         gerado: false
     };
 

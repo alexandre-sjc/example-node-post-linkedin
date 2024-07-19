@@ -1,0 +1,9 @@
+[
+    {
+        "data": "18/07/2024 15:30",
+        "assunto": "Usando nodejs para criar postagens automáticas para linkedin",
+        "prompt": "Crie um texto no idioma ingles, falando de como pode ser útil automatizar processos para gerar postagens automáticas. Máximo 3 a 4 paragrafos, em linguagem natural, sem tópicos ou formatações. Quero que seja com objetivo de mostrar conteudo para gerar engajamento na rede. Ao final gere tambem uma imagem sem textos, para ser usada na postagem, que tenha relação com texto gerado, não use nenhum texto na imagem. Nunca gere imagens com qualquer tipo de texto e nunca inclua links as respostas geradas.",
+        "imagem": "Siga esta instrução: crie imagens com chatbots ou computadores ou celulares. Escolha uma opção.",
+        "gerado": true
+    }
+]
