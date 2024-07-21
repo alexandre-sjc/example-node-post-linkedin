@@ -66,18 +66,18 @@ async function createPost(ownerId, imageAsset, title, text) {
         specificContent: {
             'com.linkedin.ugc.ShareContent': {
                 shareCommentary: {
-                    text: text.replace("**", ""),
+                    text: text.replace("**", "").replace("```", ""),
                 },
                 shareMediaCategory: 'IMAGE',
                 media: [
                     {
                         status: 'READY',
                         description: {
-                            text: text,
+                            text: text.replace("**", "").replace("```", ""),
                         },
                         media: imageAsset,
                         title: {
-                            text: title,
+                            text: title.replace("**", "").replace("```", ""),
                         },
                     },
                 ],
